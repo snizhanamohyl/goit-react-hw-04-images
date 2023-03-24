@@ -6,24 +6,23 @@ import { Overlay, ModalWindow } from "./Modal.styled";
 const modalRoot = document.getElementById('modal-root');
 
 export default function Modal({ imgURL, tags, closeModal }) {
-    const handleKeyDown = (e) => {  
-        if (e.code === 'Escape') {
-            closeModal();
-        }
-    }
-
+    useEffect(() => {
+        const handleKeyDown = (e) => {  
+            if (e.code === 'Escape') {
+                closeModal();
+            }}
+        
+        window.addEventListener('keydown', handleKeyDown)
+        
+        return () => window.removeEventListener('keydown', handleKeyDown)
+        }, [])
+    
     const handleBackdropClick = ({ currentTarget, target}) => {
         if (currentTarget === target) {
             closeModal();
         }
     }
-
-    useEffect(() => {
-        window.addEventListener('keydown', handleKeyDown)
-        
-        return () => window.removeEventListener('keydown', handleKeyDown)
-    },[handleKeyDown])
-
+    
     return createPortal(<Overlay onClick={handleBackdropClick}> 
             <ModalWindow>
                 <img src={imgURL} alt={tags} width="900px"/>
