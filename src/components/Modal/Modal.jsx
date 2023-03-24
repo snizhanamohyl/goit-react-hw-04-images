@@ -15,7 +15,7 @@ export default function Modal({ imgURL, tags, closeModal }) {
         window.addEventListener('keydown', handleKeyDown)
         
         return () => window.removeEventListener('keydown', handleKeyDown)
-        }, [])
+        }, [closeModal])
     
     const handleBackdropClick = ({ currentTarget, target}) => {
         if (currentTarget === target) {
