@@ -46,7 +46,7 @@ export default function App() {
                     setStatus(STATUS.REJECTED);
                 })
         }, 1000)
-    }, [status])
+    }, [status, imgs])
 
     const onSubmit = (value) => {
         setImgs([]);
