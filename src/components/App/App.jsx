@@ -45,7 +45,7 @@ export default function App() {
                     setError(error.message);
                     setStatus(STATUS.REJECTED);
                 })
-        }, 1000)
+        }, 500)
     }, [status, imgs])
 
     const onSubmit = (value) => {
