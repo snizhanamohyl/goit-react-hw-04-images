@@ -7,6 +7,7 @@ import Error from 'components/Error/Error';
 import Button from "components/Button/Button";
 import SearchImages from 'services/api'
 import { AppContainer } from './App.styled'
+import { Notify } from "notiflix";
 
 const STATUS = {
     IDLE: 'idle',
@@ -32,6 +33,8 @@ export default function App() {
         setTimeout(() => {
             searchImages.fetchImages()
                 .then(({ hits, total }) => {
+                    if (total!==0) Notify.info(total===1 ? `${total} image was found`:`${total} images were found`)
+
                     if (hits.length === 0) throw new Error(noResultsMsg);
                     
                     const newImgLength = imgs.length + hits.length;

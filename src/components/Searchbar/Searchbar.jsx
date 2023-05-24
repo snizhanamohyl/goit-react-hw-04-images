@@ -4,6 +4,17 @@ import { Notify } from "notiflix";
 import { Search } from "react-bootstrap-icons";
 import { SearchField, SearchForm, SearchFormBtn, SearchFormInput } from "./Searchbar.styled";
 
+Notify.init({
+    borderRadius: '3px',
+    fontSize: '16px',
+    fontAwesomeIconSize: '1px',
+    info: {
+        background: '#F6F6F6',
+        textColor: '#666666',
+        notiflixIconColor: '#3F51B5',
+    }
+});
+
 export default function Searchbar({ onSubmit }) {
     const [inputValue, setInputValue] = useState('');
 
