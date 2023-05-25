@@ -33,7 +33,7 @@ export default function App() {
         setTimeout(() => {
             searchImages.fetchImages()
                 .then(({ hits, total }) => {
-                    if (total!==0) Notify.info(total===1 ? `${total} image was found`:`${total} images were found`)
+                    if (searchImages.page === 1) showMsg(total);
 
                     if (hits.length === 0) throw new Error(noResultsMsg);
                     
@@ -50,6 +50,19 @@ export default function App() {
                 })
         }, 500)
     }, [status, imgs])
+
+    const showMsg = (total) => {
+        switch (total) {
+            case 0:
+                break;
+            case 1:
+                Notify.info(`${total} image was found`)
+                break;
+            default:
+                Notify.info(`${total} images were found`)
+                break;
+        }
+    }
 
     const onSubmit = (value) => {
         setImgs([]);
